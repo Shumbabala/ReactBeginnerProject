@@ -50,7 +50,7 @@ function ExpenseForm(props) {
     };
 
     //ExpenseData object submission to parent component (NewExpense.js)
-    props.onSaveExpenseData();
+    props.onSaveExpenseData(ExpenseData);
 
     //form input blank resetting
     setEnteredTitle("");
