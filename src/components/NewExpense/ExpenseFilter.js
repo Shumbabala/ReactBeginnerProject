@@ -2,6 +2,8 @@ import "./ExpenseFilter.css";
 
 const ExpenseFilter = (props) => {
   function onOptionClick(event) {
+    //again, console.logs are only for testing purpouses
+    console.log("expense filter value: " + event.target.value);
     //event object date value will be extracted in parent component (Expenses.js)
     //so we simply pass the event object to said parent component
     props.onFilterChange(event);
