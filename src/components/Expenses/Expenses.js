@@ -7,7 +7,6 @@ import { useState } from "react";
 function Expenses(props) {
   //we need to declare a state where we'll store the filter info from ExpenseFilter component
   const [chosenFilter, setChosenFilter] = useState("2022");
-  //using state to represent the filtered expenses
   const [expensesArray, setExpensesArray] = useState(props.expenses);
 
   function filterChangeHandler(event) {
@@ -16,8 +15,8 @@ function Expenses(props) {
     /*Assignment 3 code: output correct ExpenseItem list depending on'chosenFilter' parameter*/
     //this code seems to be the main issue of the problem,
     //giving "TypeError: Cannot read properties of undefined (reading 'filter')" on React App
-    setExpensesArray((props) => {
-      props.expenses.filter((expense) => {
+    setExpensesArray(() => {
+      return props.expenses.filter((expense) => {
         return expense.date.getFullYear() === parseInt(chosenFilter);
       });
     });
