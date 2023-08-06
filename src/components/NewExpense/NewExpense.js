@@ -2,8 +2,6 @@ import "./NewExpense.css";
 import ExpenseForm from "./ExpenseForm";
 import { useState } from "react";
 
-//TEST MESSGE FOR TEST COMMIT
-
 function NewExpense(props) {
   //create state hooks
   //render boolean used to render conditionally in return statement
