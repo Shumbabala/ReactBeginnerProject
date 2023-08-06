@@ -1,27 +1,22 @@
 import "./Expenses.css";
 import Card from "../UI/Card";
 import ExpenseFilter from "../NewExpense/ExpenseFilter";
-import ExpenseItem from "./ExpenseItem";
+import ExpensesList from "./ExpensesList";
+// (remove once udemy issue is resolved) import ExpenseItem from "./ExpenseItem";
+import ExpenseRender from "./ExpenseRender";
 import { useState } from "react";
 
 function Expenses(props) {
   //we need to declare a state where we'll store the filter info from ExpenseFilter component
   const [chosenFilter, setChosenFilter] = useState("2022");
-  const [expensesArray, setExpensesArray] = useState(props.expenses);
 
   function filterChangeHandler(event) {
-    setChosenFilter(event.target.value);
-
-    /*Assignment 3 code: output correct ExpenseItem list depending on'chosenFilter' parameter*/
-    //this code seems to be the main issue of the problem,
-    //giving "TypeError: Cannot read properties of undefined (reading 'filter')" on React App
-    setExpensesArray(() => {
-      return props.expenses.filter((expense) => {
-        return expense.date.getFullYear() === parseInt(chosenFilter);
-      });
-    });
+    setChosenFilter(() => event.target.value);
   }
 
+  /*return statement has same structure as in App component, 
+  except you need to extract each of the ExpenseItem components off of the
+  'props' array submitted into this component as a parameter*/
   return (
     <div>
       <Card className="expenses">
@@ -30,16 +25,12 @@ function Expenses(props) {
           onFilterChange={filterChangeHandler}
         ></ExpenseFilter>
 
-        {/*this is the rendering code that fails to work*/}
-
-        {expensesArray.map((expense) => (
-          <ExpenseItem
-            key={expense.id}
-            title={expense.title}
-            amount={expense.amount}
-            date={expense.date}
-          />
-        ))}
+        {/*the code below works, but it's not part of the code version I'm trying to make work, can ignore*/}
+        <ExpensesList
+          expenses={props.expenses.filter(
+            (expense) => expense.date.getFullYear() === parseInt(chosenFilter)
+          )}
+        />
       </Card>
     </div>
   );

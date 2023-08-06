@@ -18,6 +18,10 @@ function ExpenseForm(props) {
     setEnteredDate(event.target.value);
   }
 
+  function cancelClickHandler(){
+    //cancelClickHandler() function of parent component call (NexExpenses.js)
+    props.onCancelClick();
+  }
   /*
   instead of using the above verbose syntax we could use the following =>...
   const [data, setData] = useState({ title: "", amount: 0, date: new Date() });
@@ -95,9 +99,7 @@ function ExpenseForm(props) {
       </div>
       <div className="new-expense__actions">
         {/*we must now also add a 'cancel' button next to the regular 'Add Expense' button*/}
-        <button type="button" onClick={props.onCancelClick}>
-          Cancel
-        </button>
+        <button type="button" onClick={cancelClickHandler}>Cancel</button>
         <button type="submit">Add Expense</button>
       </div>
     </form>
